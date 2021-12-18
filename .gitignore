@@ -1,6 +1,6 @@
 .DS_Store
 .idea/
-./main
+main
 
 bin/
 
