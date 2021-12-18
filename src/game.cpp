@@ -27,7 +27,7 @@ void Game::Write(float _x, float _y, const char* text, TTF_Font* font, SDL_Color
 {
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended( font, text, textColor);
     SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
-
+    SDL_Delay(10); // Fixes crash by making sure the texture is loaded before drawing
     SDL_Rect src;
     src.x = 0;
     src.y = 0;

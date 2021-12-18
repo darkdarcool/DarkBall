@@ -11,7 +11,7 @@ public:
     int y;
     int w;
     int h;
-    int ticks = 100;
+    Uint32 timeout = SDL_GetTicks() + 10;
     bool addPoint = false;
 
     GoodBall(int _x, int _y);

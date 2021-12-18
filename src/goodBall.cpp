@@ -19,18 +19,15 @@ void GoodBall::Render(SDL_Renderer *renderer) {
 void GoodBall::HandleClick(SDL_MouseButtonEvent *event) {
     if (event->x > x && event->x < x + w && event->y > y && event->y < y + h) {
         addPoint = true;
-        ticks = 0;
+
     }
 }
 
 void GoodBall::Move() {
-    if (ticks != 0) {
-        ticks = ticks - 1;
-    }
-    else {
-        ticks = 100;
+    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
         x = rand() % (640 - w);
         y = rand() % (480 - h);
+        timeout = SDL_GetTicks() + 900;
     }
 }
 

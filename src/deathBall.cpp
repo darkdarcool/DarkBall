@@ -23,12 +23,9 @@ void DeathBall::HandleClick(SDL_MouseButtonEvent *event) {
 }
 
 void DeathBall::Move(int g_x, int g_y) {
-    if (ticks != 0) {
-        ticks = ticks - 1;
-    }
-    else {
+    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
         x = g_x;
         y = g_y;
-        ticks = 140;
+        timeout = SDL_GetTicks() + 1230;
     }
 }

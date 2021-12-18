@@ -12,7 +12,7 @@ public:
     int w;
     int h;
     bool shouldKill = false;
-    int ticks = 140;
+    Uint32 timeout = SDL_GetTicks() + 10;
 
     DeathBall(int _x, int _y);
     void Render(SDL_Renderer *renderer);
