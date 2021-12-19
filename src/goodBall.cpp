@@ -11,7 +11,7 @@ GoodBall::GoodBall(int _x, int _y) {
 }
 
 void GoodBall::Render(SDL_Renderer *renderer) {
-    SDL_Texture* tex = IMG_LoadTexture(renderer, "./res/sprites/GoodBall.png");
+    SDL_Texture* tex = IMG_LoadTexture(renderer, "./res/sprites/OLDPEOPLEGOODBALL.png");
     SDL_Rect rect = {x, y, w, h};
     SDL_RenderCopy(renderer, tex, NULL, &rect);
 }

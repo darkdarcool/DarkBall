@@ -42,6 +42,8 @@ void Game::Write(float _x, float _y, const char* text, TTF_Font* font, SDL_Color
 
     SDL_RenderCopy(renderer, message, &src, &dst);
     SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(message);
+
 }
 
 

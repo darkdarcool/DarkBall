@@ -2,11 +2,13 @@
 #include "game.h"
 #include "deathBall.h"
 #include "goodBall.h"
+#include "royalBall.h"
 #include <vector>
 
 SDL_Color white = { 255, 255, 255 };
 DeathBall dball(50, 50);
 GoodBall gball(100, 100);
+RoyalBall rball;
 
 int main()
 {
@@ -57,11 +59,14 @@ int main()
             game.Write(10, 10, std::string(std::string("Score: ") + std::to_string(score)).c_str(), cocogoose, white);
             dball.Render(game.renderer);
             gball.Render(game.renderer);
+            rball.Render(game.renderer);
             gball.Move();
             dball.Move(gball.x, gball.y);
+            rball.Move();
             if (mouseDown) {
                 dball.HandleClick(&mouse);
                 gball.HandleClick(&mouse);
+                rball.HandleClick(&mouse);
                 mouseDown = false;
             }
             if (dball.shouldKill) {
@@ -72,6 +77,11 @@ int main()
                 score++;
                 gball.addPoint = false;
             }
+            if (rball.addPoint) {
+                score += 5;
+                rball.addPoint = false;
+            }
+            if (rball.HitWall()) rball.ResetPos();
         }
         else if (isDead) {
             game.Write(10, 10, std::string(std::string("Score: ") + std::to_string(score)).c_str(), cocogoose, white);
@@ -82,6 +92,7 @@ int main()
                 score = 0;
                 gball = GoodBall(100, 100);
                 dball = DeathBall(50, 50);
+                rball.ResetPos();
             }
         }
         SDL_RenderPresent(game.renderer);
